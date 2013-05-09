@@ -1,12 +1,18 @@
 package com.tenpage.uca.utils;
 
+import java.io.IOException;
+
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.tenpage.uca.LoginSinaWeiboActivity;
 import com.tenpage.uca.entity.SinaWeiboReturnData;
 import com.weibo.sdk.android.Oauth2AccessToken;
+import com.weibo.sdk.android.WeiboException;
+import com.weibo.sdk.android.api.StatusesAPI;
+import com.weibo.sdk.android.net.RequestListener;
 
 /**
  * @author fanshuo
@@ -63,12 +69,13 @@ public class UCASinaWeiboUtils {
 		return data;
 	}
 
-	public static void shareWeibo(Context context, String content) {
+	public static void shareWeibo(final Context context, String content, RequestListener listener) {
 		String access_token = PreferenceManager.getString(context,
 				PreferenceManager.KEY_WEIBO_SINA_TOKEN, "");
 		Long expires_in = PreferenceManager.getLong(context,
 				PreferenceManager.KEY_WEIBO_SINA_EXPIRES_IN, 0L);
 		Oauth2AccessToken accessToken = new Oauth2AccessToken(access_token, expires_in.toString());
-		
+		StatusesAPI api = new StatusesAPI(accessToken);
+		api.update(content, "0.0", "0.0",listener);
 	}
 }

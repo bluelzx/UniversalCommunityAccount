@@ -21,7 +21,7 @@ import com.weibo.sdk.android.sso.SsoHandler;
 public class LoginSinaWeiboActivity extends Activity {
 
 	private SsoHandler mSsoHandler;
-	public static final String SinaWeibo_APPKEY = "1770632969";//1770632969
+	public static final String SinaWeibo_APPKEY = "1158881934";//1770632969
 	public static final String SinaWeibo_APPSECRET = "070b33b4ecd7a5088b785699eb3d4542";//69f141e65bfab9e2b1abc382c6780687
 	public static final String SinaWeibo_RedirectUrl = "http://www.weibo.com";
 	public static final String SCOPE = "email,direct_messages_read,direct_messages_write," +
@@ -39,7 +39,9 @@ public class LoginSinaWeiboActivity extends Activity {
 	 */
 	private void authSina() {
 		Weibo mWeibo = Weibo.getInstance(SinaWeibo_APPKEY,
-				SinaWeibo_RedirectUrl, SCOPE);
+				SinaWeibo_APPSECRET);
+		mWeibo.setupConsumerConfig(SinaWeibo_APPKEY,
+				SinaWeibo_RedirectUrl);
 		mSsoHandler = new SsoHandler(this, mWeibo);
 		mSsoHandler.authorize(new WeiboAuthListener() {
 			@Override
@@ -64,15 +66,15 @@ public class LoginSinaWeiboActivity extends Activity {
 				PreferenceManager.putString(LoginSinaWeiboActivity.this,
 						PreferenceManager.KEY_WEIBO_SINA_TOKEN, token);
 				PreferenceManager
-						.putString(LoginSinaWeiboActivity.this,
+						.putLong(LoginSinaWeiboActivity.this,
 								PreferenceManager.KEY_WEIBO_SINA_EXPIRES_IN,
-								expires_in);
+								Long.parseLong(expires_in));
 				// 根据EXPIRE_IN计算出具体在哪个时间过期
 				Long expiresTime = System.currentTimeMillis()
 						+ Long.parseLong(expires_in) * 1000;
-				PreferenceManager.putString(LoginSinaWeiboActivity.this,
+				PreferenceManager.putLong(LoginSinaWeiboActivity.this,
 						PreferenceManager.KEY_WEIBO_SINA_EXPIRES_TIME,
-						expiresTime.toString());
+						expiresTime);
 				ActivityUtils.showCenterToast(LoginSinaWeiboActivity.this,
 						"授权成功", Toast.LENGTH_SHORT);
 				LoginSinaWeiboActivity.this.finish();
