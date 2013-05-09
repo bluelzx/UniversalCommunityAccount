@@ -20,6 +20,11 @@ public class PreferenceManager {
 	public static final String KEY_WEIBO_SINA_EXPIRES_IN = "uca_key_weibo_sina_expires_in";
 	public static final String KEY_WEIBO_SINA_EXPIRES_TIME = "uca_key_weibo_sina_expires_time";
 
+	//人人
+	public static final String KEY_RENREN_TOKEN = "uca_key_renren_token";
+	public static final String KEY_RENREN_EXPIRES_IN = "uca_key_renren_expires_in";
+	public static final String KEY_RENREN_EXPIRES_TIME = "uca_key_renren_expires_time";
+
 	private static SharedPreferences getSharedPreferences(final Context pContext) {
 		if (pContext == null) {
 			return null;

@@ -7,7 +7,6 @@ import android.widget.Toast;
 
 import com.tenpage.uca.utils.ActivityUtils;
 import com.tenpage.uca.utils.PreferenceManager;
-import com.weibo.sdk.android.Oauth2AccessToken;
 import com.weibo.sdk.android.Weibo;
 import com.weibo.sdk.android.WeiboAuthListener;
 import com.weibo.sdk.android.WeiboDialogError;
@@ -24,10 +23,6 @@ public class LoginSinaWeiboActivity extends Activity {
 	public static final String SinaWeibo_APPKEY = "1158881934";//1770632969
 	public static final String SinaWeibo_APPSECRET = "070b33b4ecd7a5088b785699eb3d4542";//69f141e65bfab9e2b1abc382c6780687
 	public static final String SinaWeibo_RedirectUrl = "http://www.weibo.com";
-	public static final String SCOPE = "email,direct_messages_read,direct_messages_write," +
-			"friendships_groups_read,friendships_groups_write,statuses_to_me_read," +
-				"follow_app_official_microblog";
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -62,7 +57,6 @@ public class LoginSinaWeiboActivity extends Activity {
 			public void onComplete(Bundle values) {
 				String token = values.getString("access_token");
 				String expires_in = values.getString("expires_in");
-				Oauth2AccessToken accessToken = new Oauth2AccessToken(token, expires_in);
 				PreferenceManager.putString(LoginSinaWeiboActivity.this,
 						PreferenceManager.KEY_WEIBO_SINA_TOKEN, token);
 				PreferenceManager
