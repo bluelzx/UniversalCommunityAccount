@@ -2,8 +2,9 @@ UniversalCommunityAccount
 =========================
 
 第三方账号登录通用包
-
+-------------
 务必在Manifest中声明这些
+
         <activity
             android:name="com.tenpage.uca.LoginSinaWeiboActivity"
             android:label="@string/app_name" >
@@ -17,3 +18,5 @@ UniversalCommunityAccount
             android:name="com.renren.api.connect.android.AuthorizationHelper$BlockActivity"
             android:theme="@android:style/Theme.Dialog" >
         </activity>
+        
+
