@@ -10,22 +10,27 @@ import android.content.SharedPreferences;
 public class PreferenceManager {
 	public static final String SharedPreferencesName = "UCA_SharedPreferences";
 
-	//QQ互连
+	// QQ互连
 	public static final String KEY_LOGIN_QQ_ACCESS_TOKEN = "uca_key_login_qq_access_token";
 	public static final String KEY_LOGIN_QQ_OPEN_ID = "uca_key_login_qq_open_id";
-	public static final String KEY_LOGIN_QQ_EXPIRES_TIME = "uca_key_login_qq_expires_time";//过期时间
-	
+	public static final String KEY_LOGIN_QQ_EXPIRES_TIME = "uca_key_login_qq_expires_time";// 过期时间
+
+	// 新浪微博
+	public static final String KEY_WEIBO_SINA_TOKEN = "uca_key_weibo_sina_token";
+	public static final String KEY_WEIBO_SINA_EXPIRES_IN = "uca_key_weibo_sina_expires_in";
+	public static final String KEY_WEIBO_SINA_EXPIRES_TIME = "uca_key_weibo_sina_expires_time";
 
 	private static SharedPreferences getSharedPreferences(final Context pContext) {
 		if (pContext == null) {
 			return null;
 		}
-		SharedPreferences pre = pContext.getSharedPreferences(SharedPreferencesName, 0);
+		SharedPreferences pre = pContext.getSharedPreferences(
+				SharedPreferencesName, 0);
 		return pre;
 	}
 
 	public static float getFloat(final Context pContext, final String pKey,
-			final float pDefaultValue) throws Exception {
+			final float pDefaultValue) {
 		return PreferenceManager.getSharedPreferences(pContext).getFloat(pKey,
 				pDefaultValue);
 	}
@@ -44,7 +49,7 @@ public class PreferenceManager {
 	}
 
 	public static int getInt(final Context pContext, final String pKey,
-			final int pDefaultValue) throws Exception {
+			final int pDefaultValue) {
 		return PreferenceManager.getSharedPreferences(pContext).getInt(pKey,
 				pDefaultValue);
 	}
@@ -63,7 +68,7 @@ public class PreferenceManager {
 	}
 
 	public static long getLong(final Context pContext, final String pKey,
-			final long pDefaultValue) throws Exception {
+			final long pDefaultValue) {
 		return PreferenceManager.getSharedPreferences(pContext).getLong(pKey,
 				pDefaultValue);
 	}
@@ -82,7 +87,7 @@ public class PreferenceManager {
 	}
 
 	public static boolean getBoolean(final Context pContext, final String pKey,
-			final boolean pDefaultValue) throws Exception {
+			final boolean pDefaultValue) {
 		return PreferenceManager.getSharedPreferences(pContext).getBoolean(
 				pKey, pDefaultValue);
 	}
@@ -101,7 +106,7 @@ public class PreferenceManager {
 	}
 
 	public static String getString(final Context pContext, final String pKey,
-			final String pDefaultValue) throws Exception {
+			final String pDefaultValue) {
 		return PreferenceManager.getSharedPreferences(pContext).getString(pKey,
 				pDefaultValue);
 	}
