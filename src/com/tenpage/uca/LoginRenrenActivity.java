@@ -10,7 +10,6 @@ import com.renren.api.connect.android.Renren;
 import com.renren.api.connect.android.exception.RenrenAuthError;
 import com.renren.api.connect.android.view.RenrenAuthListener;
 import com.tenpage.uca.utils.ActivityUtils;
-import com.tenpage.uca.utils.PreferenceManager;
 
 /**
  * @author fanshuo
@@ -27,26 +26,13 @@ public class LoginRenrenActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		renren = new Renren(API_KEY, SECRET_KEY, APP_ID, this);
+		renren.init(this);
 		RenrenAuthListener listener = new RenrenAuthListener() {
 			@Override
 			public void onComplete(final Bundle values) {
 				handler.post(new Runnable() {
 					@Override
 					public void run() {
-						String token = values.getString("access_token");
-						String expires_in = values.getString("expires_in");
-						PreferenceManager.putString(LoginRenrenActivity.this,
-								PreferenceManager.KEY_RENREN_TOKEN, token);
-						PreferenceManager
-								.putLong(LoginRenrenActivity.this,
-										PreferenceManager.KEY_RENREN_EXPIRES_IN,
-										Long.parseLong(expires_in));
-						// 根据EXPIRE_IN计算出具体在哪个时间过期
-						Long expiresTime = System.currentTimeMillis()
-								+ Long.parseLong(expires_in) * 1000;
-						PreferenceManager.putLong(LoginRenrenActivity.this,
-								PreferenceManager.KEY_RENREN_EXPIRES_TIME,
-								expiresTime);
 						ActivityUtils.showCenterToast(LoginRenrenActivity.this,
 								"授权成功", Toast.LENGTH_SHORT);
 						LoginRenrenActivity.this.finish();

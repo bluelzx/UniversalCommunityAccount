@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 
 import com.renren.api.connect.android.AsyncRenren;
 import com.renren.api.connect.android.Renren;
@@ -31,27 +30,6 @@ public class UCARenrenUtils {
 	}
 
 	/**
-	 * 检查是否已经授权
-	 * 
-	 * @param context
-	 * @return
-	 */
-	public static boolean hasAlreadyLogin(Context context) {
-		try {
-			String access_token = PreferenceManager.getString(context,
-					PreferenceManager.KEY_RENREN_TOKEN, "");
-			if (!TextUtils.isEmpty(access_token)) {
-				return true;
-			} else {
-				return false;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-
-	/**
 	 * 获取本地保存的授权信息
 	 * 
 	 * @param context
@@ -59,12 +37,6 @@ public class UCARenrenUtils {
 	 */
 	public static RenrenReturnData getLoginData(Context context) {
 		RenrenReturnData data = new RenrenReturnData();
-		String access_token = PreferenceManager.getString(context,
-				PreferenceManager.KEY_RENREN_TOKEN, "");
-		Long expires_time = PreferenceManager.getLong(context,
-				PreferenceManager.KEY_RENREN_EXPIRES_TIME, 0L);
-		data.setAccess_token(access_token);
-		data.setExpires_time(expires_time);
 		return data;
 	}
 
