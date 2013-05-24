@@ -40,4 +40,11 @@ UniversalCommunityAccount
             </intent-filter>
         </activity>
         
-
+关于微信，需要在工程中建立packagename.wxapi.WXEntryActivity，WXEntryActivity可以参考com.tenpage.uca.wxapi.WXEntryActivity
+另外需要在Manifest中注册该activity，并加上exported属性，设置为true，例如
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
